@@ -1,6 +1,7 @@
 const express = require ('express');
 const path = require("path");
 const mongoose = require("mongoose");
+const routes = require('./server/routes');
 
 require('dotenv').config();
 
@@ -19,5 +20,7 @@ db.on('error', console.error.bind(console,'error: '));
 db.once('open', () => {
     console.log('MongoDB database connection established!');
 });
+
+routes(app);
 
 app.listen(process.env.PORT || 4000, ()=> console.log('APP listening on port 4000'));
